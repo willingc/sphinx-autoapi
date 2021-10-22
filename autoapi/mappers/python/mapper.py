@@ -257,7 +257,7 @@ class PythonSphinxMapper(SphinxMapperBase):
 
         last_mtime = getattr(self.app.env, "autoapi_max_mtime", 0)
 
-        this_mtime = max(os.path.getmtime(file) for file in files, last_mtime)
+        this_mtime = max((os.path.getmtime(file) for _, file in files))
         self.app.env.autoapi_max_mtime = this_mtime
 
         if not self.app.config.autoapi_keep_files:
